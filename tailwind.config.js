@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["./src/**/*.{html,js}"],
+  darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        laptop: { min: "340px", max: "1280px" },
+      }
+    },
   },
   plugins: [],
-}
-
+};
