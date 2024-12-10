@@ -4,9 +4,9 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="dark:bg-darkbg">
+    <div className="dark:bg-gray-700">
       <Header />
-      <main className="dark:bg-darkbg">
+      <main>
         <AppRoutes />
       </main>
       <Footer />

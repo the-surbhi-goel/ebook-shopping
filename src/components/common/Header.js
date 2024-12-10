@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Header = () => {
               {darkMode ? (
                 <i className="bi bi-brightness-high cursor-pointer dark:text-white"></i>
               ) : (
-                <i class="bi bi-moon-stars-fill cursor-pointer dark:text-white"></i>
+                <i className="bi bi-moon-stars-fill cursor-pointer dark:text-white"></i>
               )}
             </span>
             <span>
@@ -49,4 +49,3 @@ const Header = () => {
   );
 };
 
-export default Header;

@@ -1,4 +1,4 @@
-import Header from "./Header";
-import Footer from "./Footer";
-
-export { Header, Footer };
+export { Accordion } from "./Accordion";
+export { Header } from "./Header";
+export { Footer } from "./Footer";
+export { Rating } from "./Rating";
