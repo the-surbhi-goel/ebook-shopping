@@ -36,9 +36,9 @@ const Header = () => {
             <span>
               <i className="bi bi-search cursor-pointer dark:text-white"></i>
             </span>
-            <span>
+            <Link to="/">
               <i className="bi bi-cart-fill cursor-pointer dark:text-white"></i>
-            </span>
+            </Link>
             <span>
               <i className="bi bi-person-circle cursor-pointer dark:text-white"></i>
             </span>
