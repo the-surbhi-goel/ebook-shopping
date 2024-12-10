@@ -22,6 +22,7 @@ export const FeaturedProduct = () => {
               id: element.id,
             });
           });
+          console.log(temp);
           setProducts(temp);
         })
         .catch((error) => console.log(error));

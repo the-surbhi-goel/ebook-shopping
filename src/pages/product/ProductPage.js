@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ProductCard, SkeletonProductCard } from "../components/product";
-import { Filter } from "../components";
-import { db } from "../firebase/config";
+import { ProductCard, SkeletonProductCard } from "../../components/product";
+import { Filter } from "../../components";
+import { db } from "../../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 
 export const ProductPage = () => {
