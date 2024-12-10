@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { Search } from "./Search";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -16,7 +18,7 @@ export const Header = () => {
   }, [darkMode]);
 
   return (
-    <header>
+    <header className="relative">
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
           <Link to="/" className="flex items-center">
@@ -33,7 +35,7 @@ export const Header = () => {
                 <i className="bi bi-moon-stars-fill cursor-pointer dark:text-white"></i>
               )}
             </span>
-            <span>
+            <span onClick={() => setShowSearch(!showSearch)}>
               <i className="bi bi-search cursor-pointer dark:text-white"></i>
             </span>
             <Link to="/">
@@ -45,7 +47,8 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </header>
   );
 };
-

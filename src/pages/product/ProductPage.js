@@ -1,32 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard, SkeletonProductCard } from "../../components/product";
 import { Filter } from "../../components";
-import { db } from "../../firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { getBookList } from "../../services";
+import { useLocation } from "react-router-dom";
 
 export const ProductPage = () => {
   const [products, setProducts] = useState([false, false, false, false, false, false]);
   const [showFilters, setFilters] = useState(false);
-  const collectionRef = useRef(collection(db, "eBook"));
+  const searchParams = useLocation().search;
+  const searchTerm = new URLSearchParams(searchParams).get("q");
 
   useEffect(() => {
     async function getBooks() {
-      getDocs(collectionRef.current)
-        .then((data) => {
-          let temp = [];
-          data.docs.forEach((element) => {
-            let data = element.data();
-            temp.push({
-              ...data,
-              id: element.id,
-            });
-          });
-          setProducts(temp);
-        })
-        .catch((error) => console.log(error));
+      const data = await getBookList(searchTerm);
+      setProducts(data);
     }
     getBooks();
-  }, [collectionRef]);
+  }, [searchTerm]);
 
   return (
     <>
