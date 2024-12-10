@@ -1,10 +1,32 @@
-import React, { useState } from "react";
-import { ProductCard } from "../components/product";
+import React, { useEffect, useRef, useState } from "react";
+import { ProductCard, SkeletonProductCard } from "../components/product";
 import { Filter } from "../components";
+import { db } from "../firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
 export const ProductPage = () => {
   const [products, setProducts] = useState([false, false, false, false, false, false]);
   const [showFilters, setFilters] = useState(false);
+  const collectionRef = useRef(collection(db, "eBook"));
+
+  useEffect(() => {
+    async function getBooks() {
+      getDocs(collectionRef.current)
+        .then((data) => {
+          let temp = [];
+          data.docs.forEach((element) => {
+            let data = element.data();
+            temp.push({
+              ...data,
+              id: element.id,
+            });
+          });
+          setProducts(temp);
+        })
+        .catch((error) => console.log(error));
+    }
+    getBooks();
+  }, [collectionRef]);
 
   return (
     <>
@@ -19,7 +41,14 @@ export const ProductPage = () => {
         </div>
 
         <div className="flex flex-wrap justify-center lg:flex-row">
-          {products.length && products.map((product, index) => <ProductCard key={index} />)}
+          {products.length &&
+            products.map((product, index) =>
+              product ? (
+                <ProductCard key={index} product={product} />
+              ) : (
+                <SkeletonProductCard key={index} />
+              )
+            )}
         </div>
       </div>
     </>

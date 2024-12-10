@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Rating } from "../common";
 
 export const ProductCard = ({ product }) => {
-  const { best_seller, cover, in_stock, overview, price, title } = product;
+  const { best_seller, cover, in_stock, overview, price, rating, title } = product;
 
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-2">
@@ -26,7 +26,7 @@ export const ProductCard = ({ product }) => {
           {title}
         </h5>
         <p className="dark:text-white">{overview}</p>
-        <Rating />
+        <Rating rating={rating} />
         <div className="flex items-center justify-between">
           <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
           <Link
