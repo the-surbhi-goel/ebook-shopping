@@ -15,6 +15,14 @@ const FAQS = [
     heading: "What is the main purpose of an ebook?",
     desc: "E-books have become a popular way for businesses to share information with their customers. They can be used for a variety of purposes, such as promoting a product or service, providing additional information about a topic, or simply building brand awareness.",
   },
+  {
+    heading: "Is eBook better than book?",
+    desc: "Illustrations on paper are generally higher quality than even high-end e-readers can reproduce. E-books come with font style and size flexibility. E-readers can store thousands of books on a single device.",
+  },
+  {
+    heading: "How do ebooks affect your eyes?",
+    desc: "If you prefer e-book readers (e-readers) or tablets, visual fatigue could be a concern. According to the World Health Organization (WHO), visual fatigue can occur in response to discomfort after prolonged visual activity. It can look like “fatigue, pain around the eyes, blurred vision or headache.”",
+  },
 ];
 
 Object.freeze(FAQS);
