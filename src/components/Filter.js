@@ -1,6 +1,19 @@
 import React from "react";
+import { useFilter } from "../context-reducer";
 
 export const Filter = ({ setFilters }) => {
+  const {
+    setBestSeller,
+    setInStockOnly,
+    setSortBy,
+    setRating,
+    clearFilter,
+    bestSellerOnly,
+    inStockOnly,
+    sortBy,
+    rating,
+  } = useFilter();
+
   return (
     <div
       id="drawer-body-scrolling"
@@ -40,7 +53,13 @@ export const Filter = ({ setFilters }) => {
             <ul id="dropdown-example" className="py-2 space-y-2">
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="price" id="lowToHigh" />
+                  <input
+                    type="radio"
+                    name="price"
+                    id="lowToHigh"
+                    checked={sortBy === "lowToHigh" || false}
+                    onChange={() => setSortBy("lowToHigh")}
+                  />
                   <label htmlFor="lowToHigh" className="ml-3">
                     Price - Low to High
                   </label>
@@ -48,22 +67,18 @@ export const Filter = ({ setFilters }) => {
               </li>
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="price" id="highToLow" />
+                  <input
+                    type="radio"
+                    name="price"
+                    id="highToLow"
+                    checked={sortBy === "highToLow" || false}
+                    onChange={() => setSortBy("highToLow")}
+                  />
                   <label htmlFor="highToLow" className="ml-3">
                     Price - High to Low
                   </label>
                 </span>
               </li>
-              {/* <li>
-                <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  Price - Low to High
-                </span>
-              </li>
-              <li>
-                <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  Price - High to Low
-                </span>
-              </li> */}
             </ul>
           </li>
           <li>
@@ -78,7 +93,13 @@ export const Filter = ({ setFilters }) => {
             <ul id="dropdown-example" className="py-2 space-y-2">
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="rating" id="_4star" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    id="_4star"
+                    checked={rating === 4 || false}
+                    onChange={() => setRating(4)}
+                  />
                   <label htmlFor="_4star" className="ml-3">
                     4 <i className="bi bi-star-fill"></i> and Above
                   </label>
@@ -86,7 +107,13 @@ export const Filter = ({ setFilters }) => {
               </li>
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="rating" id="_3star" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    id="_3star"
+                    checked={rating === 3 || false}
+                    onChange={() => setRating(3)}
+                  />
                   <label htmlFor="_3star" className="ml-3">
                     3 <i className="bi bi-star-fill"></i> and Above
                   </label>
@@ -94,7 +121,13 @@ export const Filter = ({ setFilters }) => {
               </li>
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="rating" id="_2star" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    id="_2star"
+                    checked={rating === 2 || false}
+                    onChange={() => setRating(2)}
+                  />
                   <label htmlFor="_2star" className="ml-3">
                     2 <i className="bi bi-star-fill"></i> and Above
                   </label>
@@ -102,7 +135,13 @@ export const Filter = ({ setFilters }) => {
               </li>
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="radio" name="rating" id="_1star" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    id="_1star"
+                    checked={rating === 1 || false}
+                    onChange={() => setRating(1)}
+                  />
                   <label htmlFor="_1star" className="ml-3">
                     1 <i className="bi bi-star-fill"></i> and Above
                   </label>
@@ -122,7 +161,13 @@ export const Filter = ({ setFilters }) => {
             <ul id="dropdown-example" className="py-2 space-y-2">
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="checkbox" name="bestSeller" id="bestSeller" />
+                  <input
+                    type="checkbox"
+                    name="bestSeller"
+                    id="bestSeller"
+                    checked={bestSellerOnly || false}
+                    onChange={() => setBestSeller()}
+                  />
                   <label htmlFor="bestSeller" className="ml-3">
                     Best Seller Only
                   </label>
@@ -130,7 +175,13 @@ export const Filter = ({ setFilters }) => {
               </li>
               <li>
                 <span className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  <input type="checkbox" name="stock" id="stock" />
+                  <input
+                    type="checkbox"
+                    name="stock"
+                    id="stock"
+                    checked={inStockOnly || false}
+                    onChange={() => setInStockOnly()}
+                  />
                   <label htmlFor="stock" className="ml-3">
                     InStock Only
                   </label>
@@ -139,7 +190,10 @@ export const Filter = ({ setFilters }) => {
             </ul>
           </li>
           <li className="flex">
-            <button className="text-white flex-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button
+              className="text-white flex-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => clearFilter()}
+            >
               Clear Filters
             </button>
           </li>

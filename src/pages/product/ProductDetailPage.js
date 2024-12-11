@@ -74,7 +74,7 @@ export const ProductDetailPage = () => {
 
           {/* Price */}
           <div className="text-3xl font-bold text-gray-900 dark:text-slate-200">
-          <i class="bi bi-currency-rupee"></i> {product.price}
+          <i className="bi bi-currency-rupee"></i> {product.price}
           </div>
           <div className="my-3">
             <Rating rating={product.rating} />

@@ -3,9 +3,10 @@ import { ProductCard, SkeletonProductCard } from "../../components/product";
 import { Filter } from "../../components";
 import { getBookList } from "../../services";
 import { useLocation } from "react-router-dom";
+import { useFilter } from "../../context-reducer";
 
 export const ProductPage = () => {
-  const [products, setProducts] = useState([false, false, false, false, false, false]);
+  const { productList, updateProductList } = useFilter();
   const [showFilters, setFilters] = useState(false);
   const searchParams = useLocation().search;
   const searchTerm = new URLSearchParams(searchParams).get("q");
@@ -13,9 +14,10 @@ export const ProductPage = () => {
   useEffect(() => {
     async function getBooks() {
       const data = await getBookList(searchTerm);
-      setProducts(data);
+      updateProductList(data);
     }
     getBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   return (
@@ -31,8 +33,8 @@ export const ProductPage = () => {
         </div>
 
         <div className="flex flex-wrap justify-center lg:flex-row">
-          {products.length &&
-            products.map((product, index) =>
+          {productList?.length &&
+            productList?.map((product, index) =>
               product ? (
                 <ProductCard key={index} product={product} />
               ) : (

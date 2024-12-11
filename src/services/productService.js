@@ -3,12 +3,17 @@ import { db } from "../firebase/config";
 
 export async function getBookList(searchTerm) {
   const collectionRef = collection(db, "eBook");
+  // let q1 = inStockOnly ?? where("in_stock", "==", inStockOnly);
+  // const dramaQRef = query(collectionRef, where("in_stock", "==", inStockOnly));
 
   try {
     const data = await getDocs(collectionRef);
 
     let temp = [];
-    const searchText = searchTerm.toLowerCase();
+    let searchText;
+    if (searchTerm) {
+      searchText = searchTerm.toLowerCase();
+    }
     data.docs.forEach((element) => {
       let data = element.data();
       if (searchTerm) {
