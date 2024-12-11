@@ -3,6 +3,7 @@ import {
   FaqPage,
   HomePage,
   LoginPage,
+  PageNotFound,
   ProductDetailPage,
   ProductPage,
   RegisterPage,
@@ -13,6 +14,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage title="Home" />} />
+      <Route path={PATH.home} element={<HomePage title="Home" />} />
       <Route path={PATH.login} element={<LoginPage title="Login" />} />
       <Route path={PATH.register} element={<RegisterPage title="Register" />} />
       <Route path={PATH.faq} element={<FaqPage title="FAQs" />} />
@@ -21,6 +23,7 @@ const AppRoutes = () => {
         path={`${PATH.products}/:id`}
         element={<ProductDetailPage title="Product Details" />}
       />
+      <Route path="*" element={<PageNotFound title="Page Not Found" />} />
     </Routes>
   );
 };

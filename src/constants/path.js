@@ -1,10 +1,10 @@
 const PATH = {
-    home: "/home",
-    products: "/products",
-    faq: "/faq",
-    register: "/register",
-    login: "/login",
-    orders: "/orders",
+    home: "home",
+    products: "products",
+    faq: "faq",
+    register: "register",
+    login: "login",
+    orders: "orders",
   };
   
   Object.freeze(PATH);

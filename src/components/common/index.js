@@ -1,4 +1,5 @@
 export { Accordion } from "./Accordion";
+export { Button } from "./Button";
 export { Header } from "./Header";
 export { LoggedInDropdown } from "./LoggedInDropdown";
 export { LoggedOutDropdown } from "./LoggedOutDropdown";
