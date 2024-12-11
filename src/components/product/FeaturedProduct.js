@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
-import { getDocs, collection, addDoc, query, where } from "firebase/firestore";
+import { getDocs, collection, query, where } from "firebase/firestore";
 import { useRef } from "react";
 import { db } from "../../firebase/config";
 import {SkeletonProductCard} from "./SkeletonProductCard"

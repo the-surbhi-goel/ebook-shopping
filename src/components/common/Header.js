@@ -8,7 +8,10 @@ import { LoggedOutDropdown } from "./LoggedOutDropdown";
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
   const [showSearch, setShowSearch] = useState(false);
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(JSON.parse(localStorage.getItem("token")) ? true : false);
+  // const [login, setLogin] = useState(
+  //   localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : false
+  // );
   const [showDropdown, setDropdown] = useState(false);
 
   useEffect(() => {
@@ -53,7 +56,7 @@ export const Header = () => {
       </nav>
       {showDropdown &&
         (login ? (
-          <LoggedInDropdown setDropdown={setDropdown} />
+          <LoggedInDropdown setDropdown={setDropdown} setLogin={setLogin} />
         ) : (
           <LoggedOutDropdown setDropdown={setDropdown} />
         ))}

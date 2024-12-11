@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        laptop: { min: "340px", max: "1280px" },
+        laptop: { min: "800px", max: "1280px" },
       }
     },
   },

@@ -5,3 +5,4 @@ export { LoggedOutDropdown } from "./LoggedOutDropdown";
 export { Footer } from "./Footer";
 export { Rating } from "./Rating";
 export { Search } from "./Search";
+export { Spinner } from "./Spinner";

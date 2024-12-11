@@ -1,8 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PATH from "../../constants/path";
+import { auth } from "../../firebase/config";
+import { signOut } from "firebase/auth";
 
-export const LoggedInDropdown = ({ setDropdown }) => {
+export const LoggedInDropdown = ({ setDropdown, setLogin }) => {
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    signOut(auth).then(() => {
+      localStorage.removeItem("token");
+    });
+
+    setDropdown(false);
+    setLogin(false);
+    alert("Logout successfully");
+    navigate(PATH.home)
+  };
+
   return (
     <div
       id="dropdownDivider"
@@ -42,7 +57,7 @@ export const LoggedInDropdown = ({ setDropdown }) => {
       </ul>
       <div className="py-2">
         <Link
-          onClick={() => setDropdown(false)}
+          onClick={() => onLogout()}
           to="/"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
         >
