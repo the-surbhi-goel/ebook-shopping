@@ -1,11 +1,13 @@
 import React from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-import { Rating } from "../common";
+import { Button, Rating } from "../common";
 import PATH from "../../constants/path";
+import { useCart } from "../../context-reducer";
 
 export const ProductCard = ({ product }) => {
   const { id, best_seller, cover, in_stock, overview, price, rating, title } = product;
+  const { addToCart, removeFromCart, cartItemIds } = useCart();
 
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-2">
@@ -29,13 +31,27 @@ export const ProductCard = ({ product }) => {
         <p className="dark:text-white">{overview}</p>
         <Rating rating={rating} />
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white"><i className="bi bi-currency-rupee"></i>{price}</span>
-          <Link
-            to="/"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Add to cart
-          </Link>
+          <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <i className="bi bi-currency-rupee"></i>
+            {price}
+          </span>
+          {cartItemIds.has(product.id) ? (
+            <Button
+              onClick={() => removeFromCart(product)}
+              classname="bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            >
+              Remove
+              <i className="bi bi-trash ml-2"></i>
+            </Button>
+          ) : (
+            <Button
+              onClick={() => addToCart(product)}
+              disabled={in_stock ? "" : "disabled"}
+              classname={in_stock ? "" : "disabled:bg-blue-400 cursor-not-allowed"}
+            >
+              Add to cart {in_stock}
+            </Button>
+          )}
         </div>
       </div>
     </div>

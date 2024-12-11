@@ -1,9 +1,16 @@
 import React from "react";
 import { Rating } from "../common";
+import { useCart } from "../../context-reducer";
 
 const CartCard = ({ product }) => {
+  const { removeFromCart } = useCart();
+
   return (
-    <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div className="flex flex-col relative items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row mb-5  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <i
+        class="bi bi-trash absolute text-red-500 right-5 top-5 bg-transparent"
+        onClick={() => removeFromCart(product)}
+      ></i>
       <img
         className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
         src={product.cover}
@@ -38,10 +45,10 @@ const CartCard = ({ product }) => {
 
         <div className="text-3xl font-bold text-gray-900 dark:text-slate-200">
           <i className="bi bi-currency-rupee"></i> {product.price}
-          </div>
-          <div className="my-3">
-            <Rating rating={product.rating} />
-          </div>
+        </div>
+        <div className="my-3">
+          <Rating rating={product.rating} />
+        </div>
       </div>
     </div>
   );

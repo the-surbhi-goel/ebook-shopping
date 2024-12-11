@@ -10,6 +10,7 @@ import {
   RegisterPage,
 } from "../pages";
 import PATH from "../constants/path";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -19,7 +20,14 @@ const AppRoutes = () => {
       <Route path={PATH.login} element={<LoginPage title="Login" />} />
       <Route path={PATH.register} element={<RegisterPage title="Register" />} />
       <Route path={PATH.faq} element={<FaqPage title="FAQs" />} />
-      <Route path={PATH.cart} element={<CartPage title="Cart" />} />
+      <Route
+        path={PATH.cart}
+        element={
+          <ProtectedRoute>
+            <CartPage title="Cart" />
+          </ProtectedRoute>
+        }
+      />
       <Route path={PATH.products} element={<ProductPage title="Product List" />} />
       <Route
         path={`${PATH.products}/:id`}

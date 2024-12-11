@@ -5,13 +5,14 @@ import { Search } from "./Search";
 import { LoggedInDropdown } from "./LoggedInDropdown";
 import { LoggedOutDropdown } from "./LoggedOutDropdown";
 import PATH from "../../constants/path";
+import { useCart } from "../../context-reducer";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
   const [showSearch, setShowSearch] = useState(false);
   const [login, setLogin] = useState(JSON.parse(localStorage.getItem("token")) ? true : false);
   const [showDropdown, setDropdown] = useState(false);
-  const cartList = 0;
+  const { cartList } = useCart();
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -46,7 +47,9 @@ export const Header = () => {
             </span>
             <Link to={PATH.cart}>
               <i className="bi bi-cart-fill cursor-pointer dark:text-white relative">
-              <span className="absolute text-sm -top-3 left-2.5 bg-blue-300 px-1 rounded-full text-slate-800">0</span>
+                <span className="absolute text-sm -top-3 left-2.5 bg-blue-300 px-1 rounded-full text-slate-800">
+                  {cartList.length}
+                </span>
               </i>
             </Link>
             <span onClick={() => setDropdown(!showDropdown)}>
