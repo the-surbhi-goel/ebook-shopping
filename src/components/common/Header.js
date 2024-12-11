@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
+import { LoggedInDropdown } from "./LoggedInDropdown";
+import { LoggedOutDropdown } from "./LoggedOutDropdown";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
   const [showSearch, setShowSearch] = useState(false);
+  const [login, setLogin] = useState(true);
+  const [showDropdown, setDropdown] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -41,12 +45,18 @@ export const Header = () => {
             <Link to="/">
               <i className="bi bi-cart-fill cursor-pointer dark:text-white"></i>
             </Link>
-            <span>
+            <span onClick={() => setDropdown(!showDropdown)}>
               <i className="bi bi-person-circle cursor-pointer dark:text-white"></i>
             </span>
           </div>
         </div>
       </nav>
+      {showDropdown &&
+        (login ? (
+          <LoggedInDropdown setDropdown={setDropdown} />
+        ) : (
+          <LoggedOutDropdown setDropdown={setDropdown} />
+        ))}
 
       {showSearch && <Search setShowSearch={setShowSearch} />}
     </header>
