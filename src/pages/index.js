@@ -1,3 +1,4 @@
+export { CartPage } from "./CartPage";
 export { FaqPage } from "./FaqPage";
 export { HomePage } from "./HomePage";
 export { LoginPage } from "./auth/LoginPage";

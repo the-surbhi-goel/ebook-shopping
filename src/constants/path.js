@@ -1,5 +1,6 @@
 const PATH = {
     home: "home",
+    cart: "cart",
     products: "products",
     faq: "faq",
     register: "register",

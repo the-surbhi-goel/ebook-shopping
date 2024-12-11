@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import { CartLst, EmptyCart } from "../components/cart";
 
-const CartPage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+export const CartPage = () => {
+  const cartList = [];
 
-export default CartPage
+  return <section>{cartList?.length ? <CartLst /> : <EmptyCart />}</section>;
+};

@@ -1,7 +1,2 @@
-import CartLst from "./CartLst";
-import EmptyCart from "./EmptyCart";
-
-export {
-    CartLst,
-    EmptyCart
-}
+export {CartLst} from "./CartLst";
+export {EmptyCart} from "./EmptyCart";

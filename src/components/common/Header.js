@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { Search } from "./Search";
 import { LoggedInDropdown } from "./LoggedInDropdown";
 import { LoggedOutDropdown } from "./LoggedOutDropdown";
+import PATH from "../../constants/path";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
   const [showSearch, setShowSearch] = useState(false);
   const [login, setLogin] = useState(JSON.parse(localStorage.getItem("token")) ? true : false);
-  // const [login, setLogin] = useState(
-  //   localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : false
-  // );
   const [showDropdown, setDropdown] = useState(false);
+  const cartList = 0;
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -45,8 +44,10 @@ export const Header = () => {
             <span onClick={() => setShowSearch(!showSearch)}>
               <i className="bi bi-search cursor-pointer dark:text-white"></i>
             </span>
-            <Link to="/">
-              <i className="bi bi-cart-fill cursor-pointer dark:text-white"></i>
+            <Link to={PATH.cart}>
+              <i className="bi bi-cart-fill cursor-pointer dark:text-white relative">
+              <span className="absolute text-sm -top-3 left-2.5 bg-blue-300 px-1 rounded-full text-slate-800">0</span>
+              </i>
             </Link>
             <span onClick={() => setDropdown(!showDropdown)}>
               <i className="bi bi-person-circle cursor-pointer dark:text-white"></i>
