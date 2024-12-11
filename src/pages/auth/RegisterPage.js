@@ -1,14 +1,16 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { auth } from "../firebase/config";
-import { emailRegex } from "../_helpers";
+import { auth } from "../../firebase/config";
+import { emailRegex } from "../../_helpers";
 import { useNavigate } from "react-router-dom";
-import PATH from "../constants/path";
+import PATH from "../../constants/path";
 import { toast } from "react-toastify";
+import { useTitle } from "../../hooks/useTitle";
 
-export const LoginPage = () => {
+export const RegisterPage = ({ title }) => {
   const navigate = useNavigate();
+  useTitle(title);
   const {
     register,
     handleSubmit,
@@ -21,22 +23,24 @@ export const LoginPage = () => {
   });
 
   const onSubmit = async (formData) => {
-    signInWithEmailAndPassword(auth, formData.email, formData.password)
+      createUserWithEmailAndPassword(auth, formData.email, formData.password)
       .then((cred) => {
+        console.log(cred.user);
         localStorage.setItem("token", JSON.stringify(cred.user.accessToken));
-        localStorage.setItem("email", JSON.stringify(cred.user.email));
+        alert("User Registered");
         navigate(PATH.products);
       })
       .catch((error) => {
-        console.log(error);
-        toast.error(error.message, { closeButton: true });
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("Email Already exist", { closeButton: true });
+        } else toast.error(error.message, { closeButton: true });
       });
   };
 
   return (
     <>
       <section className="flex flex-col dark:text-white items-center">
-        <h3 className="text-5xl font-bold mb-30"> Login</h3>
+        <h3 className="text-5xl font-bold mb-30"> Register</h3>
 
         <form
           className="flex flex-col border m-5 p-5 rounded w-4/5 laptop:w-2/5"
@@ -100,45 +104,7 @@ export const LoginPage = () => {
             Submit
           </button>
         </form>
-
-        {/* 
-        <form className="text-left" onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            label="Enter your user name"
-            placeholder="Username"
-            {...register("username", {
-              required: true,
-            })}
-          />
-
-          {errors?.username?.type === "required" && (
-            <p className="text-danger">Please enter your user name</p>
-          )}
-
-          <input
-            type="password"
-            label="Enter your password"
-            placeholder="Password"
-            {...register("password", {
-              required: true,
-            })}
-          />
-
-          {errors?.password?.type === "required" && (
-            <p className="text-danger">Please enter your password</p>
-          )}
-
-          <div className="d-flex justify-content-center mt-30">
-            <button
-              type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 mr-2 mb-2 dark:bg-gray-900 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-blue-800"
-              text="Login"
-            />
-          </div>
-        </form> */}
       </section>
     </>
   );
 };
-

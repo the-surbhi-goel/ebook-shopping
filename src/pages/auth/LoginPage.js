@@ -1,14 +1,16 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { auth } from "../firebase/config";
-import { emailRegex } from "../_helpers";
+import { auth } from "../../firebase/config";
+import { emailRegex } from "../../_helpers";
 import { useNavigate } from "react-router-dom";
-import PATH from "../constants/path";
+import PATH from "../../constants/path";
 import { toast } from "react-toastify";
+import { useTitle } from "../../hooks/useTitle";
 
-export const RegisterPage = () => {
+export const LoginPage = ({ title }) => {
   const navigate = useNavigate();
+  useTitle(title);
   const {
     register,
     handleSubmit,
@@ -21,24 +23,22 @@ export const RegisterPage = () => {
   });
 
   const onSubmit = async (formData) => {
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((cred) => {
-        console.log(cred.user);
         localStorage.setItem("token", JSON.stringify(cred.user.accessToken));
-        alert("User Registered");
+        localStorage.setItem("email", JSON.stringify(cred.user.email));
         navigate(PATH.products);
       })
       .catch((error) => {
-        if (error.code === 400) {
-          toast.error("Email Already exist", { closeButton: true });
-        } else toast.error(error.message, { closeButton: true });
+        console.log(error);
+        toast.error(error.message, { closeButton: true });
       });
   };
 
   return (
     <>
       <section className="flex flex-col dark:text-white items-center">
-        <h3 className="text-5xl font-bold mb-30"> Register</h3>
+        <h3 className="text-5xl font-bold mb-30"> Login</h3>
 
         <form
           className="flex flex-col border m-5 p-5 rounded w-4/5 laptop:w-2/5"
