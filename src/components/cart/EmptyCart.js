@@ -15,7 +15,7 @@ export const EmptyCart = () => {
           Explore our wide selection and find something you like
         </p>
         <Link to={PATH.products}>
-          <Button>Explore EBooks</Button>
+          <Button>Explore eBooks</Button>
         </Link>
       </div>
     </div>
