@@ -1,7 +1,6 @@
-import React from "react";
-import { useTitle } from "../hooks/useTitle";
-import { OrderFail, OrderSuccess } from "../components/order";
 import { useLocation } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle";
+import { OrderFail, OrderSuccess } from "../../components/order";
 
 export const OrderSummaryPage = ({ title }) => {
   const { state } = useLocation();

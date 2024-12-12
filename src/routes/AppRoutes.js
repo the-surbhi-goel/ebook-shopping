@@ -6,6 +6,7 @@ import {
   LoginPage,
   OrderSummaryPage,
   PageNotFound,
+  PastOrdersPage,
   ProductDetailPage,
   ProductPage,
   RegisterPage,
@@ -27,6 +28,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <CartPage title="Cart" />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={PATH.orders}
+        element={
+          <ProtectedRoute>
+            <PastOrdersPage title="Your Past Orders" />
           </ProtectedRoute>
         }
       />

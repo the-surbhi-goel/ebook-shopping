@@ -6,4 +6,5 @@ export { ProductDetailPage } from "./product/ProductDetailPage";
 export { ProductPage } from "./product/ProductPage";
 export { PageNotFound } from "./PageNotFound";
 export { RegisterPage } from "./auth/RegisterPage";
-export {OrderSummaryPage} from "./OrderSummaryPage";
+export { OrderSummaryPage } from "./orders/OrderSummaryPage";
+export { PastOrdersPage } from "./orders/PastOrdersPage";
