@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useTitle } from "../hooks/useTitle";
+import { OrderFail, OrderSuccess } from "../components/order";
+import { useLocation } from "react-router-dom";
 
-const OrderSummaryPage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+export const OrderSummaryPage = ({ title }) => {
+  const { state } = useLocation();
+  useTitle(title);
+  const status = state.status;
 
-export default OrderSummaryPage
+  return <>{status ? <OrderSuccess id={state.id} /> : <OrderFail />}</>;
+};

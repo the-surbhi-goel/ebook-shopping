@@ -41,12 +41,19 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () => {
+    dispatch({
+      type: "CLEAR_CART"
+    })
+  }
+
   const value = {
     cartList: state.cartList,
     total: state.total,
     cartItemIds: state.cartItemIds,
     addToCart,
     removeFromCart,
+    clearCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

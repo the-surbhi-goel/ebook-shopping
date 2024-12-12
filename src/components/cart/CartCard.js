@@ -8,7 +8,7 @@ const CartCard = ({ product }) => {
   return (
     <div className="flex flex-col relative items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row mb-5  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
       <i
-        class="bi bi-trash absolute text-red-500 right-5 top-5 bg-transparent"
+        className="bi bi-trash absolute text-red-500 right-5 top-5 bg-transparent"
         onClick={() => removeFromCart(product)}
       ></i>
       <img
