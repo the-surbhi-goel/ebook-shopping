@@ -33,5 +33,6 @@ export async function getBookList(searchTerm) {
     return temp;
   } catch (error) {
     console.log(error);
+    return error;
   }
 }

@@ -4,6 +4,7 @@ import { Filter } from "../../components";
 import { getBookList } from "../../services";
 import { useLocation } from "react-router-dom";
 import { useFilter } from "../../context-reducer";
+import { toast } from "react-toastify";
 
 export const ProductPage = () => {
   const { productList, updateProductList } = useFilter();
@@ -13,8 +14,12 @@ export const ProductPage = () => {
 
   useEffect(() => {
     async function getBooks() {
-      const data = await getBookList(searchTerm);
-      updateProductList(data);
+      try {
+        const data = await getBookList(searchTerm);
+        updateProductList(data);
+      } catch (error) {
+        toast.error(error, { closeButton: true });
+      }
     }
     getBooks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
