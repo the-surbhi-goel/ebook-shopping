@@ -9,30 +9,30 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export const ProductDetailPage = () => {
   const [product, setProduct] = useState({});
-  const [inCart, setInCart] = useState(false);
+  const inCart = false;
   const { id } = useParams();
 
   const addToCart = () => {};
   const removeFromCart = () => {};
 
-    useEffect(() => {
-      async function getBookDetail() {
-        const collectionRef = doc(db, "eBook", id);
+  useEffect(() => {
+    async function getBookDetail() {
+      const collectionRef = doc(db, "eBook", id);
 
-        try {
-          const docSnap = await getDoc(collectionRef);
-          console.log("docSnap ", docSnap);
-          if (docSnap.exists()) {
-            setProduct(docSnap.data());
-          } else {
-            alert("Book Doesn't exist");
-          }
-        } catch (error) {
-          console.log(error);
+      try {
+        const docSnap = await getDoc(collectionRef);
+        console.log("docSnap ", docSnap);
+        if (docSnap.exists()) {
+          setProduct(docSnap.data());
+        } else {
+          alert("Book Doesn't exist");
         }
+      } catch (error) {
+        console.log(error);
       }
-      getBookDetail();
-    }, [id]);
+    }
+    getBookDetail();
+  }, [id]);
 
   return (
     <div className="mb-10 p-10">
@@ -74,7 +74,7 @@ export const ProductDetailPage = () => {
 
           {/* Price */}
           <div className="text-3xl font-bold text-gray-900 dark:text-slate-200">
-          <i className="bi bi-currency-rupee"></i> {product.price}
+            <i className="bi bi-currency-rupee"></i> {product.price}
           </div>
           <div className="my-3">
             <Rating rating={product.rating} />

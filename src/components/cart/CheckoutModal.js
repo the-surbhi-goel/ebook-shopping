@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { emailRegex, numberRegex } from "../../_helpers";
+import { numberRegex } from "../../_helpers";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useCart } from "../../context-reducer";
@@ -23,7 +23,6 @@ const CheckoutModal = ({ setModal }) => {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const collectionRef = collection(db, "cart");
 
     addDoc(collectionRef, {

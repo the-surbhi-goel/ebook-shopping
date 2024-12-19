@@ -17,7 +17,7 @@ export const RegisterPage = ({ title }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -66,11 +66,11 @@ export const RegisterPage = ({ title }) => {
                 })}
               />
 
-              {errors?.username?.type === "required" && (
+              {errors?.email?.type === "required" && (
                 <p className="text-red-500 mt-3">Please enter your user name</p>
               )}
 
-              {errors?.username?.type === "pattern" && (
+              {errors?.email?.type === "pattern" && (
                 <p className="text-red-500 mt-3">Please enter valid email-id</p>
               )}
             </div>
