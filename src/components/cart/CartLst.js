@@ -16,11 +16,6 @@ export const CartLst = ({ list, total }) => {
             {list?.map((product, index) => (
               <CartCard key={index} product={product} />
             ))}
-            <div className="text-sm font-medium mt-5 p-5 flex justify-end text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-              <Button classname="mt-0" onClick={() => setModal(true)}>
-                Place Order
-              </Button>
-            </div>
           </div>
           <div className="laptop:w-2/5">
             <div className="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
@@ -52,6 +47,14 @@ export const CartLst = ({ list, total }) => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="m-2">
+          <div className="text-sm font-medium mt-5 p-5 flex justify-end text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <Button classname="mt-0" onClick={() => setModal(true)}>
+              Place Order
+            </Button>
           </div>
         </div>
 

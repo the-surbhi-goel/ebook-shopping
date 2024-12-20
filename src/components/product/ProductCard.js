@@ -31,14 +31,14 @@ export const ProductCard = ({ product }) => {
         <p className="dark:text-white">{overview}</p>
         <Rating rating={rating} />
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white">
+          <span className="text-3xl mobile:text-2xl font-bold text-gray-900 dark:text-white">
             <i className="bi bi-currency-rupee"></i>
             {price}
           </span>
           {cartItemIds.has(product.id) ? (
             <Button
               onClick={() => removeFromCart(product)}
-              classname="bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              classname="bg-red-700 m-0 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
             >
               Remove
               <i className="bi bi-trash ml-2"></i>
@@ -47,7 +47,7 @@ export const ProductCard = ({ product }) => {
             <Button
               onClick={() => addToCart(product)}
               disabled={in_stock ? "" : "disabled"}
-              classname={in_stock ? "" : "disabled:bg-blue-400 cursor-not-allowed"}
+              classname={in_stock ? "m-0" : "m-0 disabled:bg-blue-400 cursor-not-allowed"}
             >
               Add to cart {in_stock}
             </Button>
