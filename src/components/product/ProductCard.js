@@ -11,19 +11,21 @@ export const ProductCard = ({ product }) => {
 
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-2">
-      <Link to={`${PATH.products}/${id}`} className="relative">
+      <div className="relative">
+      <Link to={`${PATH.products}/${id}`}>
         {best_seller && (
           <span className="absolute top-4 left-2 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
             Best Seller
           </span>
         )}
         {in_stock && (
-          <span className="absolute top-4 right-2 bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">
+          <span className="absolute top-4 right-0 bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">
             In Stock
           </span>
         )}
         <img className="p-8 rounded-t-lg" src={cover ?? Logo} alt="product" />
       </Link>
+      </div>
       <div className="px-5 pb-5">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
           {title}
